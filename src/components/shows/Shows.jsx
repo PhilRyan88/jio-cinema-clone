@@ -1,7 +1,7 @@
 import styles from "./shows.module.css";
 import Show from "../show/Show";
 const Shows = (props) => {
-  console.log(props, "title");
+  console.log(props.title, "title");
 
   return (
     <section className={styles.shows}>

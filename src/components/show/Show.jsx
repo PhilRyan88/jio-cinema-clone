@@ -6,7 +6,7 @@ const Show = (props) => {
       <div className={styles.show}>
         <img src={props.movie.thumbnail} alt="Poster" />
 
-        <div className={styles.movieTitle}>{props.movie.name}</div>
+        <div className={styles.movieTitle}>{props.movie.title}</div>
       </div>
     </>
   );
