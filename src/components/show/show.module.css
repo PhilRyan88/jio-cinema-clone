@@ -1,14 +1,14 @@
-.featuredShow {
-  width: 25%;
-  height: 206px;
-  display: flex;
-  background-color: green;
-  justify-content: center;
-  align-items: center;
+.show {
+  width: 16%;
+  height: 331px;
+  background-color: yellow;
+  overflow: hidden;
   position: relative;
+  display: flex;
 }
-.featuredShow > img {
+.show > img {
   width: 100%;
+  position: absolute;
 }
 .movieTitle {
   width: 100%;
