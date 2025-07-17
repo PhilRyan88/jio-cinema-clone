@@ -5,7 +5,7 @@ import Channels from "../components/channels/Channels";
 import Carousels from "../components/carousel/Carousel";
 import Featured from "../components/featured/Featured";
 import Shows from "../components/shows/Shows";
-function Home() {
+function Home(props) {
   let [movies, setMovies] = useState([]);
   let [featuredMovies, setFeaturedMovies] = useState([]);
   let [actionMovies, setActionMovies] = useState([]);
@@ -48,7 +48,7 @@ function Home() {
   }, []);
   return (
     <>
-      <Header />
+      <Header movies={movies} />
       <Tags />
       <Carousels />
       <Channels />
