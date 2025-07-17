@@ -1,16 +1,15 @@
 import styles from "./shows.module.css";
 import Show from "../show/Show";
-const Shows = () => {
+const Shows = (props) => {
+  console.log(props, "title");
+
   return (
     <section className={styles.shows}>
-      <h1>Hindi Movies</h1>
+      <h1>{props.title}</h1>
       <div className={styles.showsParent}>
-        <Show />
-        <Show />
-        <Show />
-        <Show />
-        <Show />
-        <Show />
+        {props.movies.map((movie) => {
+          return <Show movie={movie} />;
+        })}
       </div>
     </section>
   );
