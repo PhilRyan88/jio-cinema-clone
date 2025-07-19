@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import JCLogo from "../../assets/jc_logo_v2.svg";
 import crown from "../../assets/crown.svg";
 import searchIcon from "../../assets/ic_search.svg";
 import voiceSearchIcon from "../../assets/voice-search.svg";
 import userIcon from "../../assets/clipart1128911.png";
+import Show from "../show/Show";
 
-const Header = () => {
+const Header = (props) => {
   let navLinks = ["Home", "Sports", "Movies", "TV Shows", "More"];
+  let [searchTitle, setSearchTitle] = useState("");
+  let [filteredMovies, setFilteredMovies] = useState([]);
 
+  useEffect(() => {
+    if (searchTitle !== "") {
+      let filterMovies = props.movies.filter((movie) => {
+        return movie.title.toUpperCase().includes(searchTitle.toUpperCase());
+      });
+
+      setFilteredMovies(filterMovies);
+    } else {
+      setFilteredMovies([]);
+    }
+  }, [searchTitle, props.movies]);
   return (
     <>
       <header className={styles.header}>
@@ -34,6 +48,9 @@ const Header = () => {
             </div>
             <input
               type="text"
+              onChange={(event) => {
+                setSearchTitle(event.target.value);
+              }}
               className={styles.searchInput}
               placeholder="Movies , Shows and More"
             />
@@ -45,6 +62,14 @@ const Header = () => {
           <img src={userIcon} alt="User Icon" className={styles.userIcon} />
         </div>
       </header>
+
+      {filteredMovies.length !== 0 ? (
+        <div className={styles.searchResults}>
+          {filteredMovies.map((movie) => {
+            return <Show movie={movie} />;
+          })}
+        </div>
+      ) : null}
     </>
   );
 };
