@@ -1,28 +1,41 @@
 .featuredShow {
-  width: 25%;
-  height: 500px;
+  width: 19%;
+  min-width: 250px; /* Helps in scrollable layout */
+  height: 370px;
   display: flex;
-  /* background-color: green; */
   justify-content: center;
   align-items: center;
   position: relative;
+  flex-shrink: 0; /* Prevents shrinking in horizontal scroll */
+  overflow: hidden;
+  border-radius: 12px;
 }
+
 .featuredShow > img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
 }
+
 .movieTitle {
   width: 100%;
-  height: 50px;
-  background-color: rgb(6, 7, 7, 0.5);
+  height: 40px;
+  background-color: rgba(6, 7, 7, 0.6);
   position: absolute;
-  align-self: flex-end;
+  bottom: 0;
   padding: 10px;
   font-weight: bold;
-  font-size: 25px;
-  cursor: pointer;
-  transition: 0.3s;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  align-items: center;
+  transition: height 0.3s ease;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .movieTitle:hover {
-  height: 200px;
+  height: 100px;
+  background-color: rgba(6, 7, 7, 0.8);
 }
