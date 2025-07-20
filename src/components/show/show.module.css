@@ -59,7 +59,7 @@
   margin-bottom: auto;
   color: #f1f1f1;
   max-height: 90px;
-  overflow: auto;
+  overflow: hidden;
   padding: 5px;
 }
 
