@@ -5,11 +5,16 @@ import Channels from "../components/channels/Channels";
 import Carousels from "../components/carousel/Carousel";
 import Featured from "../components/featured/Featured";
 import Shows from "../components/shows/Shows";
+import Footer from "../components/footer/Footer";
 function Home(props) {
   let [movies, setMovies] = useState([]);
   let [featuredMovies, setFeaturedMovies] = useState([]);
   let [actionMovies, setActionMovies] = useState([]);
+  let [hindiMovies, setHindiMovies] = useState([]);
+  let [tamilMovies, setTamilMovies] = useState([]);
   let [malayalamMovies, setMalayalamMovies] = useState([]);
+  let [indianMovies, setIndianMovies] = useState([]);
+
   let [topMovies, setTopMovies] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -20,25 +25,39 @@ function Home(props) {
 
         // Featured Movies
         const featMovies = moviesData.filter((movie) => movie.featured);
-        setFeaturedMovies(featMovies.slice(0, 4));
+        setFeaturedMovies(featMovies);
 
         // Action Movies
         const actMovies = moviesData.filter((movie) =>
           movie.genre.includes("Action")
         );
-        setActionMovies(actMovies.slice(0, 6));
-
+        setActionMovies(actMovies);
+        // Hindi Movies
+        const hiMovies = moviesData.filter((movie) =>
+          movie.language.includes("Hindi")
+        );
+        setHindiMovies(hiMovies);
+        // Tamil Movies
+        const taMovies = moviesData.filter((movie) =>
+          movie.language.includes("Tamil")
+        );
+        setTamilMovies(taMovies);
         // Malayalam Movies
         const maMovies = moviesData.filter((movie) =>
           movie.language.includes("Malayalam")
         );
-        setMalayalamMovies(maMovies.slice(0, 6));
+        setMalayalamMovies(maMovies);
 
         // Top Rated Movies
         const topRatedMovies = moviesData.filter(
           (movie) => movie.imdbRating >= 8.5
         );
-        setTopMovies(topRatedMovies.slice(0, 6));
+        setTopMovies(topRatedMovies);
+        // Indian Movies
+        const indMovies = moviesData.filter((movie) =>
+          movie.country.includes("India")
+        );
+        setIndianMovies(indMovies);
       } catch (err) {
         console.error("Error fetching movies:", err);
       }
@@ -54,9 +73,14 @@ function Home(props) {
       <Channels />
       <Featured movies={featuredMovies} />
 
-      <Shows title="Action Movies" movies={actionMovies} />
+      <Shows title="Popular in Action" movies={actionMovies} />
+      <Shows title="Hindi Movies" movies={hindiMovies} />
+      <Shows title="Tamil Movies" movies={tamilMovies} />
       <Shows title="Malayalam Movies" movies={malayalamMovies} />
+      <Shows title="Made in India" movies={indianMovies} />
+
       <Shows title="Top Rated Movies" movies={topMovies} />
+      <Footer />
     </>
   );
 }

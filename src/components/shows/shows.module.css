@@ -2,10 +2,69 @@
   width: 100%;
   background-color: #060707;
   padding: 10px 2%;
+  position: relative; /* For nav buttons */
+  overflow: hidden; /* Hide overflow to prevent buttons going out */
 }
+
 .showsParent {
-  width: 100%;
-  /* background-color: blue; */
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.showsParent::-webkit-scrollbar {
+  display: none;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navButton.left {
+  left: 5px;
+}
+
+.navButton.right {
+  right: 5px;
+}
+
+/* Optional: Add fade effect near scroll edges */
+.shows::before,
+.shows::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.shows::before {
+  left: 0;
+  background: linear-gradient(to right, #060707, transparent);
+}
+
+.shows::after {
+  right: 0;
+  background: linear-gradient(to left, #060707, transparent);
 }
