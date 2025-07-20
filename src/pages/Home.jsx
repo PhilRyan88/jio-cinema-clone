@@ -5,6 +5,7 @@ import Channels from "../components/channels/Channels";
 import Carousels from "../components/carousel/Carousel";
 import Featured from "../components/featured/Featured";
 import Shows from "../components/shows/Shows";
+import Footer from "../components/footer/Footer";
 function Home(props) {
   let [movies, setMovies] = useState([]);
   let [featuredMovies, setFeaturedMovies] = useState([]);
@@ -79,6 +80,7 @@ function Home(props) {
       <Shows title="Made in India" movies={indianMovies} />
 
       <Shows title="Top Rated Movies" movies={topMovies} />
+      <Footer />
     </>
   );
 }
